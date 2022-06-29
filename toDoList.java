@@ -1,9 +1,5 @@
-import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.*;
+import java.io.*;
 
 public class toDoList {
 	
@@ -61,21 +57,22 @@ public class toDoList {
         }
     }
     
-    public void Display(){
-        Node t = head;
-        while(t!=null){
-            System.out.println(t.data);
-            t = t.next;
-        }
+    public void Display() throws FileNotFoundException{
+    	File file = new File("/Users/bharath/Desktop/DSA_Project/data.txt");
+    	Scanner scan = new Scanner(file);
+    	while(scan.hasNextLine()) {
+    		String str = scan.nextLine();
+    		String[] arr = str.split(",");
+    		System.out.println("task: "+arr[0]+" --> priority: "+arr[1]);
+    	}
+    	scan.close();
     }
+    	
     
 	public static void main(String[]args) throws IOException{
 		
-		
-		FileReader fileReader = new FileReader("/Users/bharath/Desktop/DSA_Project/data.txt");
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		FileWriter fileWriter = new FileWriter("/Users/bharath/Desktop/DSA_Project/data.txt");
-		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		FileWriter fileWriter = new FileWriter("/Users/bharath/Desktop/DSA_Project/data.txt",true);
+
 		
 		
 		toDoList toDo = new toDoList();
@@ -92,12 +89,7 @@ public class toDoList {
 		int a = scan.nextInt();
 		
 		if(a==1) {
-			if(toDo.isEmpty()==true) {
-				System.out.println("There are no tasks......!");
-			}
-			else {
 				toDo.Display();
-			}	
 		}
 		if(a==2) {
 			if(toDo.isEmpty()==true) {
@@ -111,8 +103,11 @@ public class toDoList {
 		if(a==3) {
 			String string = scan.next();
 			int integer = scan.nextInt();
-			toDo.push(string, integer);		
+			toDo.push(string, integer);	
+			fileWriter.write(string+","+integer);
+			fileWriter.write(System.lineSeparator());
 		}
 		scan.close();
+		fileWriter.close();
 	}
 }
