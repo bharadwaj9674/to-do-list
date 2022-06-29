@@ -1,10 +1,15 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class toDoList {
-    
-    Node head;
+	
+	Node head;
     class Node {
-        String data;
+    	String data;
         int priority;
         Node next;
         Node(String data, int a){
@@ -64,40 +69,50 @@ public class toDoList {
         }
     }
     
-    public static void main(String[]args) {
-        
-        toDoList toDo = new toDoList();
-        
-        System.out.println("------------To do list------------");
-        System.out.println();
-        System.out.println("1.Show Tasks");
-        System.out.println("2.Remove Task");
-        System.out.println("3.Adding Task");
-        System.out.println();
-        
+	public static void main(String[]args) throws IOException{
+		
+		
+		FileReader fileReader = new FileReader("/Users/bharath/Desktop/DSA_Project/data.txt");
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		FileWriter fileWriter = new FileWriter("/Users/bharath/Desktop/DSA_Project/data.txt");
+		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		
+		
+		toDoList toDo = new toDoList();
+		
+		System.out.println("------------To do list------------");
+		System.out.println();
+		System.out.println("1.Show Tasks");
+		System.out.println("2.Remove Task");
+		System.out.println("3.Adding Task");
+		System.out.println();
+		
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter one number to do following functions:  ");
-        int a = scan.nextInt();
-        
-        if(a==1) {
-            if(toDo.isEmpty()==true) {
-                System.out.println("There are no tasks......!");
-            }
-            else {
-                toDo.Display();
-            }   
-        }
-        if(a==2) {
-            if(toDo.isEmpty()==true) {
-                System.out.println("There are no tasks to remove.....!");
-            }
-            else {
-                toDo.removeMin();
-            }
-        }
-        if(a==3) {
-            
-        }
-        scan.close();
-    }
+		int a = scan.nextInt();
+		
+		if(a==1) {
+			if(toDo.isEmpty()==true) {
+				System.out.println("There are no tasks......!");
+			}
+			else {
+				toDo.Display();
+			}	
+		}
+		if(a==2) {
+			if(toDo.isEmpty()==true) {
+				System.out.println("There are no tasks to remove.....!");
+			}
+			else {
+				toDo.removeMin();
+			}
+		}
+		
+		if(a==3) {
+			String string = scan.next();
+			int integer = scan.nextInt();
+			toDo.push(string, integer);		
+		}
+		scan.close();
+	}
 }
