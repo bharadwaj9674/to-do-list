@@ -3,8 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class toDoList {
-
-    Node head;
+    static Node head;
 
     class Node {
         String data;
@@ -21,16 +20,15 @@ public class toDoList {
         FileWriter fw = new FileWriter("/Users/bharath/Desktop/DSA_Project/data.txt");
         Node x = head;
         while(x != null){
-            x=x.next;
             fw.write(x.data+","+x.priority);
+            fw.write(System.lineSeparator());
+            x=x.next;
         }
-
+        fw.close();
     }
-
 
     public void getMin() {
         System.out.println("Task to be completed first:" + " " + head.data);
-
     }
 
     public void removeMin() throws IOException {
@@ -40,24 +38,24 @@ public class toDoList {
          temp.next = null;
 
          updateFile();
-
     }
 
     public void push(String data, int priority) {
         Node temp = new Node(data, priority);
         if (head == null) {
             head = temp;
-        } else {
+        } 
+        else {
             Node t = head;
             if (head.priority > priority) {
                 temp.next = head;
                 head = temp;
-            } else {
+            } 
+            else {
                 while (t.next != null &&
                         t.next.priority < priority) {
                     t = t.next;
                 }
-
                 temp.next = t.next;
                 t.next = temp;
             }
@@ -67,13 +65,13 @@ public class toDoList {
     public boolean isEmpty() {
         if (head == null) {
             return true;
-        } else {
+        } 
+        else {
             return false;
         }
     }
 
     public void Display() {
-
         Node t = head;
         while (t != null) {
             System.out.println("Task: "+t.data + "  ---->  Priority: " + t.priority);
@@ -82,20 +80,14 @@ public class toDoList {
     }
 
     public static void main(String[] args) throws IOException {
-
         toDoList toDo = new toDoList();
-
-        File file = new File("/Users/bharath/Desktop/DSA_Project/data.txt");
         FileReader fr = new FileReader("/Users/bharath/Desktop/DSA_Project/data.txt");
         BufferedReader bf = new BufferedReader(fr);
-
         String str;
 
         while ((str = bf.readLine()) != null) {
-
             String[] arr = str.split(",");
             toDo.push(arr[0], Integer.parseInt(arr[1]));
-
         }
 
         FileWriter fileWriter = new FileWriter("/Users/bharath/Desktop/DSA_Project/data.txt", true);
@@ -113,18 +105,30 @@ public class toDoList {
         int a = scan.nextInt();
 
         if (a == 1) {
+            if(toDo.isEmpty() == true) {
+                System.out.println("There are no tasks to display....!");
+            }
+            else {
             toDo.Display();
+            }
         }
+        
         if (a == 2) {
             if (toDo.isEmpty() == true) {
                 System.out.println("There are no tasks to remove.....!");
-            } else {
+            } 
+            else {
                 toDo.removeMin();
             }
         }
 
         if (a == 3) {
-            toDo.getMin();
+            if(toDo.isEmpty() == true) {
+                System.out.println("There are no tasks to do....!");
+            }
+            else {
+                toDo.getMin();
+            }  
         }
 
         if (a == 4) {
