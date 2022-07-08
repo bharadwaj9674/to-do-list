@@ -3,9 +3,8 @@ import java.util.Scanner;
 
 public class Employee {
 	
-	public static void main(String[]args) throws NumberFormatException, IOException {
-		
-		PriorityQueue pr = new PriorityQueue();
+	public void employee() throws NumberFormatException, IOException {
+        PriorityQueue pr = new PriorityQueue();
 		
 		System.out.println("1.To view all tasks");
 		System.out.println("2.To view the task that has to be done first");
@@ -27,3 +26,7 @@ public class Employee {
 	}
 
 }
+	
+		
+		
+
