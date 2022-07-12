@@ -3,7 +3,100 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class Login {
+	
+	static void employee(String c) throws IOException {
+		
+		FileReader fr = new FileReader(c);
+    	BufferedReader br = new BufferedReader(fr);
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print(terminalColours.GREEN_BRIGHT+"Enter G-Mail:"+terminalColours.RESET+" ");
+		String gmail = sc.nextLine();
+		System.out.print(terminalColours.GREEN_BRIGHT+"Enter password:"+terminalColours.RESET+" ");
+		String password = sc.nextLine();
+		
+		String oId;
+		String oPass;
+		String str;
+		while((str=br.readLine())!=null) {
+			String[] arr = str.split(",");
+			oId = arr[0];
+			oPass = arr[1];
+			
+			if(gmail.equals(oId)) {
+				if(password.equals(oPass)) {
+					Employee employee = new Employee();
+					employee.employee();
+				}
+			}
+		}
+		br.close();
+		sc.close();
+	}
+	
+    static void manager(String c) throws IOException {
+		
+		FileReader fr = new FileReader(c);
+    	BufferedReader br = new BufferedReader(fr);
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print(terminalColours.GREEN_BRIGHT+"Enter G-Mail:"+terminalColours.RESET+" ");
+		String gmail = sc.nextLine();
+		System.out.print(terminalColours.GREEN_BRIGHT+"Enter password:"+terminalColours.RESET+" ");
+		String password = sc.nextLine();
+		
+		String oId;
+		String oPass;
+		String str;
+		while((str=br.readLine())!=null) {
+			String[] arr = str.split(",");
+			oId = arr[0];
+			oPass = arr[1];
+			
+			if(gmail.equals(oId)) {
+				if(password.equals(oPass)) {
+					Manager manager = new Manager();
+					manager.manager();
+				}
+			}
+		}
+		br.close();
+		sc.close();
+	}
+
+    static void director(String c) throws IOException {
+    	FileReader fr = new FileReader(c);
+    	BufferedReader br = new BufferedReader(fr);
+    	
+    	Scanner sc = new Scanner(System.in);
+    	
+    	System.out.print(terminalColours.GREEN_BRIGHT+"Enter G-Mail:"+terminalColours.RESET+" ");
+    	String gmail = sc.nextLine();
+    	System.out.print(terminalColours.GREEN_BRIGHT+"Enter password:"+terminalColours.RESET+" ");
+    	String password = sc.nextLine();
+    	
+    	String oId;
+    	String oPass;
+    	String str;
+    	while((str=br.readLine())!=null) {
+    		String[] arr = str.split(",");
+    		oId = arr[0];
+    		oPass = arr[1];
+    		
+    		if(gmail.equals(oId)) {
+    			if(password.equals(oPass)) {
+    				Director director = new Director();
+    				director.director();
+    			}
+    		}
+    	}
+	br.close();
+	sc.close();
+}
 	
 	public void login() throws IOException {
 		
@@ -11,117 +104,26 @@ public class Login {
         
         // Logging in using different files
         
-        System.out.println("Select your position");
 		System.out.println("1.Director");
 		System.out.println("2.Manger");
 		System.out.println("3.Employee");
+		System.out.print(terminalColours.WHITE_BACKGROUND_BRIGHT+terminalColours.RED_BOLD_BRIGHT+"Select your position: "+terminalColours.RESET+"  ");
 		
-		System.out.print("Enter your position: ");
 		int a = scan.nextInt();
-        
-        if(a==1) {
-        	FileReader fr = new FileReader("/Users/bharath/Desktop/DSA_Project/directorLogin.txt");
-        	BufferedReader br = new BufferedReader(fr);
-        	
-        	Scanner sc = new Scanner(System.in);
-    		
-    		String oId;
-    		String oPass;
-    		String str;
-    		while((str=br.readLine())!=null) {
-    			String[] arr = str.split(",");
-    			oId = arr[0];
-    			oPass = arr[1];	
-    			
-    			System.out.println("Enter gmail");
-    			String gmail = sc.nextLine();
-    			System.out.println("Enter password");
-    			String password = sc.nextLine();
-    			
-    			
-    			if(gmail.equals(oId)) {
-    				System.out.println("Mail");
-    				if(password.equals(oPass)) {
-    					Director director = new Director();
-    					director.director();
-    				}else {
-    					System.out.println("Wrong Password....! ");
-    				}
-    			}else {
-    				System.out.println("Wrong mail");
-    			}
-    		}
-    		br.close();
-    		sc.close();	
-    	
-        }
-        if(a==2) {
-        	FileReader fr = new FileReader("/Users/bharath/Desktop/DSA_Project/managerLogin.txt");
-        	BufferedReader br = new BufferedReader(fr);
-        	Scanner sc = new Scanner(System.in);
-    		
-    		String oId;
-    		String oPass;
-    		String str;
-    		while((str=br.readLine())!=null) {
-    			String[] arr = str.split(",");
-    			oId = arr[0];
-    			oPass = arr[1];	
-    			
-    			System.out.println("Enter gmail");
-    			String gmail = sc.nextLine();
-    			System.out.println("Enter password");
-    			String password = sc.nextLine();
-    			
-    			if(gmail.equals(oId)) {
-    				System.out.println("Mail");
-    				if(password.equals(oPass)) {
-    					Manager manager = new Manager();
-    					manager.manager();
-    				}else {
-    					System.out.println("Wrong Password....! ");
-    				}
-    			}else {
-    				System.out.println("Wrong mail");
-    			}
-    		}
-    		br.close();
-    		sc.close();	
-    	}
-        
-        if(a==3) {
-        	FileReader fr = new FileReader("/Users/bharath/Desktop/DSA_Project/employeeLogin.txt");
-        	BufferedReader br = new BufferedReader(fr);
-        	Scanner sc = new Scanner(System.in);
-    		
-    		String oId;
-    		String oPass;
-    		String str;
-    		while((str=br.readLine())!=null) {
-    			String[] arr = str.split(",");
-    			oId = arr[0];
-    			oPass = arr[1];	
-    			
-    			System.out.println("Enter gmail");
-    			String gmail = sc.nextLine();
-    			System.out.println("Enter password");
-    			String password = sc.nextLine();
-    			
-    			if(gmail.equals(oId)) {
-    				System.out.println("Mail");
-    				if(password.equals(oPass)) {
-    					Employee employee = new Employee();
-    					employee.employee();
-    				}else {
-    					System.out.println("Wrong Password....! ");
-    				}
-    			}else {
-    				System.out.println("Wrong mail");
-    			}
-    		}
-    		br.close();
-    		sc.close();	
-    	}
+		
+		// If-else for logging in
+		
+		switch(a) {
+		case 1:
+			Login.director("/Users/bharath/Desktop/DSA_Project/directorLogin.txt");
+			break;
+		case 2:
+			Login.manager("/Users/bharath/Desktop/DSA_Project/managerLogin.txt");
+			break;
+		case 3:
+			Login.employee("/Users/bharath/Desktop/DSA_Project/employeeLogin.txt");
+			break;
+		}
         scan.close();
 	}   
 }
